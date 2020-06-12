@@ -1,0 +1,11 @@
+#!/bin/sh
+# check out dev-master branch
+git --work-tree=/opt/bitnami/apache2/htdocs/public --git-dir=/home/bitnami/helyos.git checkout -f master
+
+# custom steps for deployment
+# update this depending on your application needs
+cd /opt/bitnami/apache2/htdocs/public
+sudo chown -R bitnami.daemon storage
+sudo chmod -R 775 storage
+composer update
+cp /home/bitnami/helyos.env .env
